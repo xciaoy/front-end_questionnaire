@@ -1,30 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
-</template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  <router-view></router-view>
+  <metainfo>
+    <template v-slot:title="{ metainfo }">{{ metainfo.title }}</template>
+  </metainfo>
+  </template>
+<script>
+import { useMeta } from 'vue-meta'
+export default {
+  setup () {
+    useMeta({
+      title: 'F2E 前端＆UI薪資調查',
+      meta: [
+        { name: 'authour', content: 'designed by Joyce, made by Xie Ciao Yun' },
+        { name: 'description', content: '六角學院所做之前端工程師、UI設計師薪資調查並以圖表呈現。為The F2E 3rd加開之活動關卡。' }
+      ],
+      link: [
+        { rel: 'icon', href: 'favicon.ico' }
+      ]
+    })
   }
 }
+</script>
+
+<style lang="scss">
+@import "assets/scss/all";
 </style>
