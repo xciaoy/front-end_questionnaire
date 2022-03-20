@@ -1,10 +1,10 @@
 <template>
-  <section class="chart px-2 px-sm-4">
+  <section class="chart">
     <header class="chart-header">
-      <h4 class="chart-title">年齡</h4>
+      <h4 class="chart-title">年資</h4>
     </header>
-    <main class="chart-body px-sm-1"><small class="chart-unit">單位：人</small>
-      <BarChart class="chart-content" :chartData="chartData" :options="options"></BarChart>
+    <main class="chart-body"><small class="chart-unit">單位：人</small>
+      <BarChart class="chart-content ps-3 ms-1" :chartData="chartData" :options="options"></BarChart>
     </main>
   </section>
 </template>
@@ -22,29 +22,29 @@ export default {
   },
   setup (props) {
     const apiData = ref(props.apiData)
-    const ages = ref([])
-    const counts = ref([])
+    const labels = ['1年以下', '2-3年', '3-5年', '5-7年', '7-9年', '10年以上']
+    const tenuresRex = labels.map((tenure) => new RegExp(tenure))
+    const tenureDatas = ref(labels.map(() => 0))
     apiData.value
       .then((rawData) => {
         rawData.forEach((people) => {
-          const age = people.age
-            .replace('~', '-')
+          const jobTenure = people.company.job_tenure
             .replace(' ', '')
-          if (!ages.value.includes(age)) {
-            ages.value.push(age)
-            counts.value[ages.value.indexOf(age)] = 1
-          } else {
-            counts.value[ages.value.indexOf(age)] += 1
-          }
+            .replace('~', '-')
+          tenuresRex.forEach((tenure, index) => {
+            if (tenure.test(jobTenure)) {
+              tenureDatas.value[index] += 1
+            }
+          })
         })
       })
     // chart
     const chartData = {
-      labels: ages.value,
+      labels,
       datasets: [{
-        maxBarThickness: 32,
+        maxBarThickness: 48,
         minBarLength: 5,
-        data: counts.value,
+        data: tenureDatas.value,
         label: '人'
       }]
     }
@@ -55,8 +55,7 @@ export default {
             display: false
           },
           ticks: {
-            autoSkip: false,
-            maxRotation: 0
+            autoSkip: false
           }
         },
         y: {
@@ -67,9 +66,9 @@ export default {
             tickLength: 24
           },
           min: 0,
-          max: 250,
+          max: 175,
           ticks: {
-            stepSize: 50
+            stepSize: 30
           }
         }
       }
