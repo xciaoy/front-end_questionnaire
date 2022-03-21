@@ -1,24 +1,27 @@
-# front-end_questionnaire
+# 薪資數據圖表調查
 
-## Project setup
-```
-npm install
-```
+## Introduction
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+使用 Vue 實作薪資數據圖表調查，串接 六角學院 所提供 API 資訊。
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Project 
 
-### Lints and fixes files
-```
-npm run lint
-```
+* npm install
+* npm run serve
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Use Technology & Library
+
+* Vue CLI
+* ESLint
+* SCSS
+* bootstrap
+* chart.js
+* vue-chart-3
+* vue-meta
+* vue-router
+
+## Remark
+
+* 設計稿提供：Chi
+* 設計稿網址：[Figma](https://www.figma.com/file/nWH1xPWNWIhnqsuE1mNCsb/%E8%96%AA%E8%B3%87%E6%95%B8%E6%93%9A%E5%9C%96%E8%A1%A8%E8%AA%BF%E6%9F%A5?node-id=0%3A1)
+
