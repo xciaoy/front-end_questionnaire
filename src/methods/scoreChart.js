@@ -121,6 +121,7 @@ function addChart (chart, sectionedData) {
         {
           type: 'bar',
           data: salaryData,
+          label: '千元',
           maxBarThickness: 48,
           minBarLength: 5,
           order: 2
@@ -128,6 +129,7 @@ function addChart (chart, sectionedData) {
           type: 'line',
           yAxisID: 'ratingScale',
           data: scoreData,
+          label: '分',
           borderColor: '#F9F8FE',
           borderWidth: 2,
           fill: true,
